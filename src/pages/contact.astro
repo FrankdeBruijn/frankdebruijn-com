@@ -1,0 +1,109 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout title="Contact">
+  <div class="hero">
+    <h1><span>Contact</span></h1>
+    <p>Bel, mail of stuur een bericht</p>
+  </div>
+
+  <div class="section contact-grid">
+    <div class="contact-info">
+      <h2>Gegevens</h2>
+      <ul>
+        <li><span>Telefoon</span><a href="tel:+31612415418">+31 (0)6 12 41 54 18</a></li>
+        <li><span>E-mail</span><a href="mailto:info@frankdebruijn.com">info@frankdebruijn.com</a></li>
+        <li><span>Adres</span>Krakenburg 23<br />5341 BM Oss</li>
+        <li><span>KvK</span>Op aanvraag</li>
+      </ul>
+    </div>
+
+    <form class="contact-form" action="mailto:info@frankdebruijn.com" method="get">
+      <h2>Stuur een bericht</h2>
+      <label>
+        Naam
+        <input type="text" name="name" placeholder="Jouw naam" required />
+      </label>
+      <label>
+        E-mail
+        <input type="email" name="email" placeholder="jouw@email.nl" required />
+      </label>
+      <label>
+        Bericht
+        <textarea name="body" rows="5" placeholder="Vertel over jouw project..." required></textarea>
+      </label>
+      <button type="submit" class="btn">Verstuur</button>
+    </form>
+  </div>
+</Layout>
+
+<style>
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .contact-info h2, .contact-form h2 {
+    font-size: 1.3rem;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+  }
+
+  .contact-info ul { list-style: none; display: flex; flex-direction: column; gap: 1.5rem; }
+
+  .contact-info li {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .contact-info span {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+  }
+
+  .contact-info a { color: var(--accent); }
+  .contact-info a:hover { text-decoration: underline; }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .contact-form label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    background: var(--mid);
+    border: 1px solid #2a2a2a;
+    border-radius: 4px;
+    padding: 0.75rem 1rem;
+    color: var(--text);
+    font-size: 1rem;
+    font-family: inherit;
+    transition: border-color 0.2s;
+  }
+
+  .contact-form input:focus,
+  .contact-form textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+
+  @media (max-width: 768px) {
+    .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+  }
+</style>

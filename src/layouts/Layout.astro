@@ -1,0 +1,227 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+const { title, description = "Frank de Bruijn – Slowmotion, Drones & Thermografie" } = Astro.props;
+const currentPath = Astro.url.pathname;
+---
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content={description} />
+  <link rel="icon" href="/favicon.ico" />
+  <title>{title} — Frank de Bruijn</title>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="/" class="logo">Frank de Bruijn</a>
+      <button class="menu-toggle" aria-label="Menu">&#9776;</button>
+      <ul>
+        <li><a href="/" class={currentPath === "/" ? "active" : ""}>Home</a></li>
+        <li><a href="/over-mij" class={currentPath === "/over-mij" ? "active" : ""}>Over mij</a></li>
+        <li><a href="/art-of-slowmotion" class={currentPath === "/art-of-slowmotion" ? "active" : ""}>Art of Slowmotion</a></li>
+        <li><a href="/drone-operations" class={currentPath === "/drone-operations" ? "active" : ""}>Drone Operations</a></li>
+        <li><a href="/thermography" class={currentPath === "/thermography" ? "active" : ""}>Thermography</a></li>
+        <li><a href="/digital-services" class={currentPath === "/digital-services" ? "active" : ""}>Digital Services</a></li>
+        <li><a href="/contact" class={currentPath === "/contact" ? "active" : ""}>Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <slot />
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <p>&copy; {new Date().getFullYear()} Frank de Bruijn</p>
+      <div class="social">
+        <a href="https://www.linkedin.com/in/frankdebruijn" target="_blank">LinkedIn</a>
+        <a href="https://www.instagram.com/frankdebruijnfilmmaker" target="_blank">Instagram</a>
+        <a href="https://www.facebook.com/artofslowmotion" target="_blank">Facebook</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
+
+<style is:global>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0a0a0a;
+    --dark: #111;
+    --mid: #1e1e1e;
+    --accent: #e8b84b;
+    --text: #e0e0e0;
+    --muted: #888;
+    --white: #fff;
+    --max: 1100px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--text);
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; display: block; }
+
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10,10,10,0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid #222;
+  }
+
+  nav {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+
+  .logo {
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: var(--white);
+    white-space: nowrap;
+  }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+  }
+
+  nav ul a {
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    transition: color 0.2s;
+  }
+
+  nav ul a:hover, nav ul a.active { color: var(--accent); }
+
+  .menu-toggle { display: none; background: none; border: none; color: var(--white); font-size: 1.5rem; cursor: pointer; }
+
+  main { min-height: 80vh; }
+
+  footer {
+    border-top: 1px solid #222;
+    padding: 2rem 1.5rem;
+  }
+
+  .footer-inner {
+    max-width: var(--max);
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+
+  .social { display: flex; gap: 1.5rem; }
+  .social a:hover { color: var(--accent); }
+
+  /* Shared page styles */
+  .hero {
+    padding: 6rem 1.5rem 4rem;
+    max-width: var(--max);
+    margin: 0 auto;
+  }
+
+  .hero h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    color: var(--white);
+  }
+
+  .hero h1 span { color: var(--accent); }
+
+  .hero p {
+    margin-top: 1.5rem;
+    font-size: 1.1rem;
+    color: var(--muted);
+    max-width: 600px;
+  }
+
+  .section {
+    padding: 4rem 1.5rem;
+    max-width: var(--max);
+    margin: 0 auto;
+  }
+
+  .section h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 2rem;
+  }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .card {
+    background: var(--mid);
+    border: 1px solid #2a2a2a;
+    border-radius: 8px;
+    padding: 2rem;
+    transition: border-color 0.2s;
+  }
+
+  .card:hover { border-color: var(--accent); }
+
+  .card h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 0.75rem;
+  }
+
+  .card p { color: var(--muted); font-size: 0.95rem; }
+
+  .btn {
+    display: inline-block;
+    margin-top: 2rem;
+    padding: 0.75rem 2rem;
+    background: var(--accent);
+    color: var(--black);
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    border-radius: 4px;
+    text-transform: uppercase;
+    transition: opacity 0.2s;
+  }
+
+  .btn:hover { opacity: 0.85; }
+
+  @media (max-width: 768px) {
+    .menu-toggle { display: block; }
+    nav ul { display: none; }
+    .footer-inner { flex-direction: column; gap: 1rem; text-align: center; }
+  }
+</style>

@@ -1,0 +1,61 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout title="Drone Operations">
+  <div class="hero">
+    <h1>Drone <span>Operations</span></h1>
+    <p>Film · Fotografie · Mapping · FPV · Inspecties</p>
+  </div>
+
+  <div class="section">
+    <div class="intro">
+      <p>Met jarenlange ervaring als drone-operator lever ik professionele luchtbeelden en data voor uiteenlopende opdrachten. Ik ben een van de vroege adopters van drone-technologie in Nederland en heb gewerkt voor nationale televisieproducties en internationale klanten.</p>
+    </div>
+
+    <div class="card-grid" style="margin-top: 3rem;">
+      <div class="card">
+        <h3>Film & Fotografie</h3>
+        <p>Cinematografische luchtbeelden voor film, TV en commercials. Eerder ingezet voor Adam zoekt Eva, Wie is de Mol? en Discovery Channel.</p>
+      </div>
+      <div class="card">
+        <h3>Mapping & Surveys</h3>
+        <p>Nauwkeurige kartering van terreinen voor bouw, landbouw en planning. Gedetailleerde 2D en 3D output.</p>
+      </div>
+      <div class="card">
+        <h3>FPV</h3>
+        <p>Dynamische FPV-shots voor onvergetelijke camerabeweging. Snel, vloeiend en onmogelijk anders te filmen.</p>
+      </div>
+      <div class="card">
+        <h3>Inspecties</h3>
+        <p>Veilige inspectie van daken, windmolens, zonnepanelen en infrastructuur zonder gevaarlijke hoogtewerkers.</p>
+      </div>
+    </div>
+
+    <div class="specs">
+      <h2>Equipment</h2>
+      <ul>
+        <li><strong>DJI Mavic 3 Pro</strong> — Cinematografie en fotografie</li>
+        <li><strong>DJI Mavic 2 Enterprise Advanced</strong> — Thermografische inspecties</li>
+        <li><strong>DJI Avata</strong> — FPV footage</li>
+      </ul>
+      <h2 style="margin-top:2rem">Licenties</h2>
+      <ul>
+        <li>A1-A3 en A2 (Open categorie)</li>
+        <li>SPECIFIC categorie — vereist in groot deel van Brabant (nabij Volkel en Eindhoven)</li>
+        <li>Partner van Drone Solutions voor complexe opdrachten</li>
+      </ul>
+    </div>
+
+    <a href="/contact" class="btn">Vraag een offerte aan</a>
+  </div>
+</Layout>
+
+<style>
+  .intro { max-width: 700px; }
+  .intro p { color: var(--muted); font-size: 1.05rem; }
+  .specs { margin-top: 3rem; }
+  .specs h2 { font-size: 1.3rem; color: var(--white); margin-bottom: 1rem; }
+  .specs ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+  .specs li { color: var(--muted); font-size: 0.95rem; }
+  .specs strong { color: var(--text); }
+</style>

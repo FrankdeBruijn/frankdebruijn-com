@@ -1,0 +1,37 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout title="Digital Services">
+  <div class="hero">
+    <h1>Digital <span>Services</span></h1>
+    <p>Websites · Systemen · Technische consultancy</p>
+  </div>
+
+  <div class="section">
+    <div class="intro">
+      <p>Naast mijn visuele werk lever ik digitale diensten voor ondernemers en organisaties. Van het bouwen van snelle, moderne websites tot het opzetten van digitale systemen en kiosken.</p>
+    </div>
+
+    <div class="card-grid" style="margin-top:3rem">
+      <div class="card">
+        <h3>Website ontwikkeling</h3>
+        <p>Moderne, snelle websites gebouwd met Astro en gehost op Cloudflare. Geen abonnementen, geen platform-lock-in.</p>
+      </div>
+      <div class="card">
+        <h3>Digitale signage</h3>
+        <p>Dynamische informatiesystemen voor wachtkamers, recepties en publieke ruimtes. Koppeling met roostersystemen.</p>
+      </div>
+      <div class="card">
+        <h3>Technische consultancy</h3>
+        <p>Van DNS en infrastructuur tot AI-integraties. Praktisch advies zonder onnodige complexiteit.</p>
+      </div>
+    </div>
+
+    <a href="/contact" class="btn" style="margin-top:3rem">Bespreek jouw project</a>
+  </div>
+</Layout>
+
+<style>
+  .intro { max-width: 700px; }
+  .intro p { color: var(--muted); font-size: 1.05rem; }
+</style>
