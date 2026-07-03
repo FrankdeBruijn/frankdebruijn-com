@@ -18,10 +18,11 @@ const currentPath = Astro.url.pathname;
 <body>
   <header>
     <nav>
-      <a href="/" class="logo">Frank de Bruijn</a>
-      <button class="menu-toggle" aria-label="Menu">&#9776;</button>
-      <ul>
-        <li><a href="/" class={currentPath === "/" ? "active" : ""}>Home</a></li>
+      <a href="/" class="logo">Frank de Bruijn<span class="logo-dot"></span></a>
+      <button class="menu-toggle" aria-label="Menu" id="menuToggle">
+        <span></span><span></span><span></span>
+      </button>
+      <ul id="navMenu">
         <li><a href="/over-mij" class={currentPath === "/over-mij" ? "active" : ""}>Over mij</a></li>
         <li><a href="/art-of-slowmotion" class={currentPath === "/art-of-slowmotion" ? "active" : ""}>Art of Slowmotion</a></li>
         <li><a href="/drone-operations" class={currentPath === "/drone-operations" ? "active" : ""}>Drone Operations</a></li>
@@ -37,15 +38,54 @@ const currentPath = Astro.url.pathname;
   </main>
 
   <footer>
-    <div class="footer-inner">
-      <p>&copy; {new Date().getFullYear()} Frank de Bruijn</p>
-      <div class="social">
-        <a href="https://www.linkedin.com/in/frankdebruijn" target="_blank">LinkedIn</a>
-        <a href="https://www.instagram.com/frankdebruijnfilmmaker" target="_blank">Instagram</a>
-        <a href="https://www.facebook.com/artofslowmotion" target="_blank">Facebook</a>
+    <div class="footer-main">
+      <div class="footer-logos">
+        <img src="/logos/artofslowmotion.png" alt="Art of Slowmotion" height="40" />
+        <img src="/logos/warmtescan.png" alt="Warmtescan.nu" height="40" />
+        <img src="/logos/droneoperations.png" alt="Drone Operations" height="40" />
+        <img src="/logos/qtake.webp" alt="Qtake" height="40" />
+        <img src="/logos/samsung.png" alt="Samsung" height="40" />
+        <img src="/logos/davinci.png" alt="DaVinci Resolve" height="40" />
+      </div>
+      <div class="footer-info">
+        <div class="footer-col">
+          <h4>Info</h4>
+          <a href="tel:+31612415418">+31(0) 6 12 41 54 18</a>
+          <a href="mailto:Info@frankdebruijn.com">Info@frankdebruijn.com</a>
+        </div>
+        <div class="footer-col">
+          <h4>Address</h4>
+          <p>Krakenburg 23</p>
+          <p>5341BM Oss, The Netherlands</p>
+        </div>
+        <div class="footer-col">
+          <h4>Follow</h4>
+          <a href="https://www.linkedin.com/in/frankdebruijn" target="_blank">LinkedIn</a>
+          <a href="https://www.facebook.com/artofslowmotion" target="_blank">Facebook</a>
+          <a href="https://www.instagram.com/frankdebruijnfilmmaker" target="_blank">Instagram</a>
+        </div>
       </div>
     </div>
+    <div class="footer-bottom">
+      <p>© 2023 by Frank de Bruijn</p>
+    </div>
   </footer>
+
+  <script>
+    const toggle = document.getElementById('menuToggle');
+    const menu = document.getElementById('navMenu');
+    toggle?.addEventListener('click', () => {
+      menu?.classList.toggle('open');
+      toggle.classList.toggle('active');
+    });
+    // Close on link click (mobile)
+    menu?.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        menu.classList.remove('open');
+        toggle?.classList.remove('active');
+      });
+    });
+  </script>
 </body>
 </html>
 
@@ -55,12 +95,12 @@ const currentPath = Astro.url.pathname;
   :root {
     --black: #0a0a0a;
     --dark: #111;
-    --mid: #1e1e1e;
-    --accent: #e8b84b;
-    --text: #e0e0e0;
-    --muted: #888;
+    --mid: #1a1a1a;
+    --text: #ffffff;
+    --muted: #999;
     --white: #fff;
-    --max: 1100px;
+    --purple: #6c47ff;
+    --max: 1200px;
   }
 
   html { scroll-behavior: smooth; }
@@ -76,152 +116,302 @@ const currentPath = Astro.url.pathname;
   a { color: inherit; text-decoration: none; }
   img { max-width: 100%; display: block; }
 
+  /* Header */
   header {
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
     z-index: 100;
-    background: rgba(10,10,10,0.95);
-    backdrop-filter: blur(8px);
-    border-bottom: 1px solid #222;
+    background: rgba(10,10,10,0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
   }
 
   nav {
     max-width: var(--max);
     margin: 0 auto;
-    padding: 0 1.5rem;
+    padding: 0 2rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 64px;
+    height: 70px;
+    gap: 2rem;
   }
 
   .logo {
-    font-size: 1.1rem;
-    font-weight: 700;
-    letter-spacing: 0.05em;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
     color: var(--white);
     white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    flex-shrink: 0;
+  }
+
+  .logo-dot {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    background: #5b7cf6;
+    border-radius: 1px;
+    margin-left: 1px;
+    flex-shrink: 0;
   }
 
   nav ul {
     list-style: none;
     display: flex;
+    align-items: center;
     gap: 2rem;
+    margin-left: auto;
   }
 
   nav ul a {
+    font-size: 0.82rem;
+    letter-spacing: 0.06em;
+    color: rgba(255,255,255,0.75);
+    transition: color 0.2s;
+    white-space: nowrap;
+  }
+
+  nav ul a:hover,
+  nav ul a.active { color: var(--white); }
+
+  /* Hamburger */
+  .menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    margin-left: auto;
+  }
+
+  .menu-toggle span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--white);
+    border-radius: 2px;
+    transition: all 0.25s;
+    transform-origin: center;
+  }
+
+  .menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+  .menu-toggle.active span:nth-child(2) { opacity: 0; }
+  .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+  /* Main */
+  main { min-height: 100vh; }
+
+  /* Footer */
+  footer {
+    background: var(--black);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 4rem 2rem 2rem;
+  }
+
+  .footer-main {
+    max-width: var(--max);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 4rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .footer-logos {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    justify-content: center;
+  }
+
+  .footer-logos img {
+    max-height: 40px;
+    width: auto;
+    max-width: 160px;
+    object-fit: contain;
+    opacity: 0.75;
+  }
+
+  .footer-info {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .footer-col {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .footer-col h4 {
     font-size: 0.85rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+  }
+
+  .footer-col a,
+  .footer-col p {
+    font-size: 0.85rem;
     color: var(--muted);
     transition: color 0.2s;
   }
 
-  nav ul a:hover, nav ul a.active { color: var(--accent); }
+  .footer-col a:hover { color: var(--white); }
 
-  .menu-toggle { display: none; background: none; border: none; color: var(--white); font-size: 1.5rem; cursor: pointer; }
-
-  main { min-height: 80vh; }
-
-  footer {
-    border-top: 1px solid #222;
-    padding: 2rem 1.5rem;
-  }
-
-  .footer-inner {
+  .footer-bottom {
     max-width: var(--max);
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    margin: 2rem auto 0;
+    font-size: 0.8rem;
     color: var(--muted);
-    font-size: 0.85rem;
   }
-
-  .social { display: flex; gap: 1.5rem; }
-  .social a:hover { color: var(--accent); }
 
   /* Shared page styles */
-  .hero {
-    padding: 6rem 1.5rem 4rem;
+  .page-hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 8rem 2rem 5rem;
+    position: relative;
+    overflow: hidden;
+    background: var(--dark);
+  }
+
+  .page-hero-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.4;
+  }
+
+  .page-hero-content {
+    position: relative;
+    z-index: 1;
     max-width: var(--max);
     margin: 0 auto;
+    width: 100%;
   }
 
-  .hero h1 {
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    font-weight: 800;
+  .page-hero h1 {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 700;
     letter-spacing: -0.02em;
-    line-height: 1.1;
+    line-height: 1.05;
     color: var(--white);
+    margin-bottom: 1rem;
   }
 
-  .hero h1 span { color: var(--accent); }
+  .page-hero p {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.65);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 2.5rem;
+  }
 
-  .hero p {
-    margin-top: 1.5rem;
-    font-size: 1.1rem;
-    color: var(--muted);
-    max-width: 600px;
+  .btn-outline {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    border: 1px solid rgba(255,255,255,0.6);
+    color: var(--white);
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: transparent;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+    font-family: inherit;
+  }
+
+  .btn-outline:hover {
+    background: rgba(255,255,255,0.08);
+    border-color: var(--white);
   }
 
   .section {
-    padding: 4rem 1.5rem;
     max-width: var(--max);
     margin: 0 auto;
+    padding: 5rem 2rem;
+  }
+
+  .section-title {
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1.5rem;
   }
 
   .section h2 {
-    font-size: 1.8rem;
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
     font-weight: 700;
     color: var(--white);
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
   }
 
-  .card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
+  .body-text {
+    font-size: 1rem;
+    color: var(--muted);
+    line-height: 1.8;
+    max-width: 680px;
   }
 
-  .card {
-    background: var(--mid);
-    border: 1px solid #2a2a2a;
-    border-radius: 8px;
-    padding: 2rem;
-    transition: border-color 0.2s;
+  .body-text + .body-text { margin-top: 1.25rem; }
+
+  .divider {
+    border: none;
+    border-top: 1px solid rgba(255,255,255,0.07);
+    margin: 0;
   }
 
-  .card:hover { border-color: var(--accent); }
-
-  .card h3 {
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: var(--white);
-    margin-bottom: 0.75rem;
+  @media (max-width: 900px) {
+    .footer-main { grid-template-columns: 1fr; gap: 3rem; }
+    .footer-info { grid-template-columns: 1fr 1fr; }
   }
-
-  .card p { color: var(--muted); font-size: 0.95rem; }
-
-  .btn {
-    display: inline-block;
-    margin-top: 2rem;
-    padding: 0.75rem 2rem;
-    background: var(--accent);
-    color: var(--black);
-    font-weight: 700;
-    font-size: 0.9rem;
-    letter-spacing: 0.05em;
-    border-radius: 4px;
-    text-transform: uppercase;
-    transition: opacity 0.2s;
-  }
-
-  .btn:hover { opacity: 0.85; }
 
   @media (max-width: 768px) {
-    .menu-toggle { display: block; }
-    nav ul { display: none; }
-    .footer-inner { flex-direction: column; gap: 1rem; text-align: center; }
+    nav { padding: 0 1.25rem; }
+
+    .menu-toggle { display: flex; }
+
+    nav ul {
+      display: none;
+      position: fixed;
+      top: 70px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(10,10,10,0.98);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2.5rem;
+      margin: 0;
+    }
+
+    nav ul.open { display: flex; }
+
+    nav ul a {
+      font-size: 1.1rem;
+      color: var(--white);
+    }
+
+    .footer-info { grid-template-columns: 1fr; }
+
+    .section { padding: 4rem 1.25rem; }
+    .page-hero { padding: 7rem 1.25rem 4rem; }
   }
 </style>

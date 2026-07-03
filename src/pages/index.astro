@@ -1,69 +1,190 @@
 ---
 import Layout from '../layouts/Layout.astro';
 ---
-<Layout title="Home">
-  <section class="hero">
-    <h1>Het onzichtbare<br /><span>zichtbaar maken</span></h1>
-    <p>Super Slowmotion · Drones · Thermografie</p>
-    <a href="/contact" class="btn">Neem contact op</a>
-  </section>
+<Layout title="Slowmotion">
 
-  <section class="section">
-    <h2>Diensten</h2>
-    <div class="card-grid">
-      <a href="/art-of-slowmotion" class="card">
-        <h3>Art of Slowmotion</h3>
-        <p>Phantom high-speed cinematografie. Het onmogelijke vastleggen op meer dan 1000 fps.</p>
-      </a>
-      <a href="/drone-operations" class="card">
-        <h3>Drone Operations</h3>
-        <p>Professionele drone-inzet voor film, fotografie, mapping, FPV en inspecties. SPECIFIC-licentie.</p>
-      </a>
-      <a href="/thermography" class="card">
-        <h3>Thermografie</h3>
-        <p>Warmteverlies inzichtelijk maken via Warmtescan.nu. Quickscans, zonnepanelen, lekdetectie.</p>
-      </a>
-      <a href="/digital-services" class="card">
-        <h3>Digital Services</h3>
-        <p>Van concept tot digitale uitvoering. Websites, systemen en technische consultancy.</p>
-      </a>
+  <!-- Hero -->
+  <section class="home-hero">
+    <div class="home-hero-bg"></div>
+    <div class="home-hero-content">
+      <h1>Het ontzichtbare<br />zichtbaar maken</h1>
+      <p>met Super Slowmotion, Drones & Thermografie</p>
+      <a href="/contact" class="btn-outline">Contact</a>
     </div>
   </section>
 
-  <section class="section cta-section">
-    <h2>Seeing the Unseen</h2>
-    <p>Met meer dan 15 jaar ervaring in visuele technologie lever ik beelden en inzichten die anderen niet kunnen leveren.</p>
-    <a href="/over-mij" class="btn">Over mij</a>
+  <!-- Services grid -->
+  <section class="services-grid">
+    <a href="/art-of-slowmotion" class="service-tile">
+      <div class="service-bg" style="background-image: url('/img/hero-home.jpg'); filter: brightness(0.35) saturate(0.5);"></div>
+      <div class="service-content">
+        <span class="service-label">Art of Slowmotion</span>
+      </div>
+    </a>
+    <a href="/drone-operations" class="service-tile">
+      <div class="service-bg" style="background-image: url('/img/home-section1.jpg'); filter: brightness(0.35) saturate(0.5);"></div>
+      <div class="service-content">
+        <span class="service-label">Drone Operations</span>
+      </div>
+    </a>
+    <a href="/thermography" class="service-tile">
+      <div class="service-bg" style="background-image: url('/img/home-section2.jpg'); filter: brightness(0.35) saturate(0.5);"></div>
+      <div class="service-content">
+        <span class="service-label">Thermography</span>
+      </div>
+    </a>
+    <a href="/digital-services" class="service-tile">
+      <div class="service-bg" style="background-image: url('/img/hero-home.jpg'); background-position: right center; filter: brightness(0.3) saturate(0.5);"></div>
+      <div class="service-content">
+        <span class="service-label">Digital Services</span>
+      </div>
+    </a>
   </section>
+
+  <!-- Seeing the Unseen -->
+  <section class="seeing-section">
+    <div class="seeing-inner">
+      <p class="seeing-quote">"Seeing the Unseen"</p>
+      <p class="seeing-sub">Super Slowmotion&nbsp;&nbsp;·&nbsp;&nbsp;High Speed operator&nbsp;&nbsp;·&nbsp;&nbsp;Drone operations&nbsp;&nbsp;·&nbsp;&nbsp;Thermograaf</p>
+    </div>
+  </section>
+
 </Layout>
 
 <style>
-  .hero {
-    min-height: 70vh;
+  /* Hero */
+  .home-hero {
+    position: relative;
+    min-height: 100vh;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 6rem 1.5rem 4rem;
-    max-width: var(--max);
-    margin: 0 auto;
-    border-bottom: 1px solid #1e1e1e;
+    align-items: flex-end;
+    padding: 0 2rem 6rem;
+    overflow: hidden;
   }
 
-  .hero p {
-    margin-top: 1.5rem;
-    font-size: 1rem;
-    letter-spacing: 0.2em;
+  .home-hero-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('/img/hero-home.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+
+  .home-hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(10,10,10,0.2) 0%,
+      rgba(10,10,10,0.1) 40%,
+      rgba(10,10,10,0.6) 100%
+    );
+  }
+
+  .home-hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: var(--max);
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .home-hero-content h1 {
+    font-size: clamp(2.8rem, 7vw, 6rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    color: var(--white);
+    margin-bottom: 1.25rem;
+  }
+
+  .home-hero-content p {
+    font-size: 1.05rem;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 2.5rem;
+  }
+
+  /* Services grid */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    height: 280px;
+  }
+
+  .service-tile {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    transition: transform 0.3s;
+  }
+
+  .service-tile:hover .service-bg {
+    transform: scale(1.05);
+    filter: brightness(0.5) saturate(0.5) !important;
+  }
+
+  .service-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.4s ease, filter 0.4s ease;
+  }
+
+  .service-content {
+    position: relative;
+    z-index: 1;
+    padding: 1.5rem;
+    width: 100%;
+  }
+
+  .service-label {
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.85);
+    font-weight: 500;
+  }
+
+  /* Seeing the Unseen */
+  .seeing-section {
+    background: var(--dark);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    padding: 5rem 2rem;
+    text-align: center;
+  }
+
+  .seeing-inner {
+    max-width: var(--max);
+    margin: 0 auto;
+  }
+
+  .seeing-quote {
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 1.25rem;
+    letter-spacing: -0.01em;
+  }
+
+  .seeing-sub {
+    font-size: 0.82rem;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--muted);
   }
 
-  .cta-section {
-    border-top: 1px solid #1e1e1e;
+  @media (max-width: 768px) {
+    .home-hero { padding: 0 1.25rem 4rem; }
+    .services-grid { grid-template-columns: 1fr 1fr; height: auto; }
+    .service-tile { height: 180px; }
+    .seeing-section { padding: 4rem 1.25rem; }
   }
 
-  .cta-section p {
-    max-width: 600px;
-    color: var(--muted);
-    margin-bottom: 0.5rem;
+  @media (max-width: 480px) {
+    .services-grid { grid-template-columns: 1fr 1fr; }
   }
 </style>

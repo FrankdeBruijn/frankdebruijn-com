@@ -2,36 +2,52 @@
 import Layout from '../layouts/Layout.astro';
 ---
 <Layout title="Art of Slowmotion">
-  <div class="hero">
-    <h1>Art of <span>Slowmotion</span></h1>
-    <p>Phantom Operator · High Speed Cinematografie</p>
-  </div>
 
-  <div class="section">
-    <div class="intro">
-      <p>Als gecertificeerd Phantom operator leg ik momenten vast die met het blote oog onzichtbaar zijn. Met camera's die schieten op meer dan 1000 frames per seconde onthullen we de schoonheid van beweging die normaal voorbijgaat in een fractie van een seconde.</p>
+  <section class="page-hero">
+    <div class="page-hero-bg" style="background-image: url('/img/hero-home.jpg')"></div>
+    <div class="page-hero-content">
+      <p class="section-title">Art of Slowmotion</p>
+      <h1>Phantom Operator</h1>
+      <p>High Speed specialist.</p>
     </div>
+  </section>
 
-    <div class="card-grid" style="margin-top:3rem">
-      <div class="card">
-        <h3>Phantom Flex 2K</h3>
-        <p>High-speed opnames tot 2570 fps in 2K resolutie. De industriestandaard voor professionele slowmotion cinematografie.</p>
-      </div>
-      <div class="card">
-        <h3>Qtake & DIT</h3>
-        <p>Op set inzetbaar als Qtake operator (VTR) en DIT (Data). Eigen apparatuur, snelle en flexibele inzet.</p>
-      </div>
-      <div class="card">
-        <h3>Post-productie</h3>
-        <p>Video editing en color grading met DaVinci Resolve Studio en Fusion Studio. Van shoot tot aflevering.</p>
-      </div>
-    </div>
+  <section class="section">
+    <p class="body-text">
+      Door de jaren heen heb ik me gespecialiseerd op de Phantom highspeed camera's om Super Slowmotion beelden te maken.
+    </p>
+    <p class="body-text">
+      See the Unseen. Hierbij heb ik gewerkt voor diverse Tv programma's zoals Bear Grylls Discovery, vele commercials en natuurfilms. Mede door de onderwaterbehuizing een mooie aanvulling voor deze categorie.
+    </p>
+    <p class="body-text">
+      Het is en blijft fascinerend wat slowmotion in beeld brengt. Niet alleen werk ik hierbij op set voor commercials of film, maar ook voor de industrie. Valproeven, foutopsporing bij hoge snelheid producties et cetera. Sport en de medische wereld voor zowel mens als dier om bewegingen te kunnen analyseren welke normaliter niet te zien zijn. <a href="https://www.artofslowmotion.com" target="_blank">Art of Slowmotion</a>.
+    </p>
 
-    <a href="https://www.artofslowmotion.com" target="_blank" class="btn" style="margin-top:3rem">Bekijk portfolio →</a>
-  </div>
+    <hr class="divider" style="margin: 3rem 0;" />
+
+    <p class="body-text">
+      Daarnaast beschik ik over een onderwaterhuis voor de Phantom Flex4k met Remote focus. In de zomer van 22 al wat testen mee gedraaid, maar klaar voor productie in 2023!
+    </p>
+
+    <p class="body-text" style="margin-top: 2rem;">
+      Voor meer info: <a href="/contact" class="text-link">Neem contact op</a>.
+    </p>
+  </section>
+
 </Layout>
 
 <style>
-  .intro { max-width: 700px; }
-  .intro p { color: var(--muted); font-size: 1.05rem; }
+  .text-link {
+    color: var(--white);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .text-link:hover { opacity: 0.75; }
+
+  .body-text a {
+    color: var(--white);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
 </style>

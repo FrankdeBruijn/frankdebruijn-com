@@ -2,36 +2,63 @@
 import Layout from '../layouts/Layout.astro';
 ---
 <Layout title="Digital Services">
-  <div class="hero">
-    <h1>Digital <span>Services</span></h1>
-    <p>Websites · Systemen · Technische consultancy</p>
-  </div>
 
-  <div class="section">
-    <div class="intro">
-      <p>Naast mijn visuele werk lever ik digitale diensten voor ondernemers en organisaties. Van het bouwen van snelle, moderne websites tot het opzetten van digitale systemen en kiosken.</p>
+  <section class="page-hero">
+    <div class="page-hero-bg" style="background-image: url('/img/hero-home.jpg'); background-position: right center;"></div>
+    <div class="page-hero-content">
+      <p class="section-title">Digital Services</p>
+      <h1>Digital Services</h1>
+      <p>Qtake · Editing · Color Grading · Interactive Media</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <p class="body-text">
+      Inzetbaar op set met eigen Qtake set. Tevens Data. Daarnaast ruime ervaring met edit (Edit suite met Davinci Resolve & Fusion Studio) en Color Grading. Getraind door Guy Molin en met eigen Grading Suite (Davinci Resolve) flexibel en snel inzetbaar.
+    </p>
+    <p class="body-text">
+      Met interactive media bedoel ik het aansturen van beeld door o.a. sensoren. Laat beelden momenten en acties kracht bij zetten. Denk aan het voorbij lopen van een monitor waarbij een danseres in super slowmotion de beweging volgt. Swipe door shots door beweging of laat de sfeer van de beelden veranderen door temperatuur.
+    </p>
+
+    <hr class="divider" style="margin: 3rem 0;" />
+
+    <div class="ds-grid">
+      <div class="ds-item">
+        <h3>Qtake Operator</h3>
+        <p class="body-text">Inzetbaar op set met eigen Qtake set. Tot 4 camera's live inzetbaar. Tevens Data/DIT.</p>
+      </div>
+      <div class="ds-item">
+        <h3>Edit & Color Grading</h3>
+        <p class="body-text">Edit suite met DaVinci Resolve & Fusion Studio. Color grading getraind door Guy Molin.</p>
+      </div>
+      <div class="ds-item">
+        <h3>Interactive Media</h3>
+        <p class="body-text">Beeldaansturing via sensoren. Samenwerking met Samsung Business Center Veldhoven.</p>
+      </div>
+      <div class="ds-item">
+        <h3>Digital Signage</h3>
+        <p class="body-text">Dynamische informatiesystemen en digitale displays voor diverse toepassingen.</p>
+      </div>
     </div>
 
-    <div class="card-grid" style="margin-top:3rem">
-      <div class="card">
-        <h3>Website ontwikkeling</h3>
-        <p>Moderne, snelle websites gebouwd met Astro en gehost op Cloudflare. Geen abonnementen, geen platform-lock-in.</p>
-      </div>
-      <div class="card">
-        <h3>Digitale signage</h3>
-        <p>Dynamische informatiesystemen voor wachtkamers, recepties en publieke ruimtes. Koppeling met roostersystemen.</p>
-      </div>
-      <div class="card">
-        <h3>Technische consultancy</h3>
-        <p>Van DNS en infrastructuur tot AI-integraties. Praktisch advies zonder onnodige complexiteit.</p>
-      </div>
+    <div style="margin-top: 3rem;">
+      <a href="/contact" class="btn-outline">Neem contact op</a>
     </div>
+  </section>
 
-    <a href="/contact" class="btn" style="margin-top:3rem">Bespreek jouw project</a>
-  </div>
 </Layout>
 
 <style>
-  .intro { max-width: 700px; }
-  .intro p { color: var(--muted); font-size: 1.05rem; }
+  .ds-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2.5rem 2rem;
+  }
+
+  .ds-item h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 0.75rem;
+  }
 </style>

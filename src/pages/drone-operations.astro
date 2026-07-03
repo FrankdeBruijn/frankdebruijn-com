@@ -2,60 +2,105 @@
 import Layout from '../layouts/Layout.astro';
 ---
 <Layout title="Drone Operations">
-  <div class="hero">
-    <h1>Drone <span>Operations</span></h1>
-    <p>Film · Fotografie · Mapping · FPV · Inspecties</p>
-  </div>
 
-  <div class="section">
-    <div class="intro">
-      <p>Met jarenlange ervaring als drone-operator lever ik professionele luchtbeelden en data voor uiteenlopende opdrachten. Ik ben een van de vroege adopters van drone-technologie in Nederland en heb gewerkt voor nationale televisieproducties en internationale klanten.</p>
+  <section class="page-hero">
+    <div class="page-hero-bg" style="background-image: url('/img/home-section1.jpg')"></div>
+    <div class="page-hero-content">
+      <p class="section-title">Drone Operations</p>
+      <h1>Drone Operations</h1>
+      <nav class="sub-nav" aria-label="Drone secties">
+        <a href="#film">Film & Fotografie</a>
+        <a href="#mapping">Mapping</a>
+        <a href="#fpv">FPV</a>
+        <a href="#inspecties">Inspecties</a>
+        <a href="#licenties">Licenties</a>
+      </nav>
     </div>
+  </section>
 
-    <div class="card-grid" style="margin-top: 3rem;">
-      <div class="card">
+  <section class="section">
+    <p class="body-text">
+      Al in de begin tijd van de drones hield ik me hier al mee bezig. Nog voor merken als DJI de markt overnamen waren we al met drones bezig voor TV shows zoals Adam zoekt Eva, Wie is de Mol, Atlas maar ook internationaal zoals de vaste drone operator voor Bear Grylls, Discovery.
+    </p>
+    <p class="body-text">
+      Daarnaast jaren les gegeven met de Aerialtronics drones. Maar tijden zijn veranderd. Vergunningen zijn anders en daar heb ik me de laatste tijd veel mee bezig gehouden. Buiten de standaard A1-A3 en A2, heb ik ook de Specific Categorie, die voor bijna geheel Brabant nodig is. Dit omdat we in de CTR van Volkel en Eindhoven vallen. Daarvoor is de A1-A3 & A2 niet toereikend.
+    </p>
+    <p class="body-text">
+      Om de opdrachten uit te voeren beschik ik over 3 verschillende drones. De Mavic 3 Pro voor Cinematische beelden en high end fotografie, De Mavic 2 Enterprise Advanced met Warmtebeeldcamera en de Avata voor FPV beelden.
+    </p>
+    <p class="body-text">
+      Neem gerust <a href="/contact" class="text-link">contact op</a> voor meer informatie!
+    </p>
+
+    <hr class="divider" style="margin: 3rem 0;" />
+
+    <div class="drone-sections">
+      <div class="drone-section" id="film">
         <h3>Film & Fotografie</h3>
-        <p>Cinematografische luchtbeelden voor film, TV en commercials. Eerder ingezet voor Adam zoekt Eva, Wie is de Mol? en Discovery Channel.</p>
+        <p class="body-text">Cinematografische luchtbeelden voor film, TV en commercials. Eerder ingezet voor Adam zoekt Eva, Wie is de Mol en Bear Grylls Discovery.</p>
       </div>
-      <div class="card">
-        <h3>Mapping & Surveys</h3>
-        <p>Nauwkeurige kartering van terreinen voor bouw, landbouw en planning. Gedetailleerde 2D en 3D output.</p>
+      <div class="drone-section" id="mapping">
+        <h3>Mapping</h3>
+        <p class="body-text">Nauwkeurige kartering van terreinen voor bouw, landbouw en planning.</p>
       </div>
-      <div class="card">
+      <div class="drone-section" id="fpv">
         <h3>FPV</h3>
-        <p>Dynamische FPV-shots voor onvergetelijke camerabeweging. Snel, vloeiend en onmogelijk anders te filmen.</p>
+        <p class="body-text">Dynamische FPV-shots met de DJI Avata voor onvergetelijke camerabewegingen.</p>
       </div>
-      <div class="card">
+      <div class="drone-section" id="inspecties">
         <h3>Inspecties</h3>
-        <p>Veilige inspectie van daken, windmolens, zonnepanelen en infrastructuur zonder gevaarlijke hoogtewerkers.</p>
+        <p class="body-text">Veilige inspectie van daken, zonnepanelen en infrastructuur met de Mavic 2 Enterprise Advanced met warmtebeeldcamera.</p>
+      </div>
+      <div class="drone-section" id="licenties">
+        <h3>Licenties</h3>
+        <p class="body-text">A1-A3, A2 (Open categorie) en Specific categorie — vereist in groot deel van Brabant (CTR Volkel en Eindhoven).</p>
       </div>
     </div>
+  </section>
 
-    <div class="specs">
-      <h2>Equipment</h2>
-      <ul>
-        <li><strong>DJI Mavic 3 Pro</strong> — Cinematografie en fotografie</li>
-        <li><strong>DJI Mavic 2 Enterprise Advanced</strong> — Thermografische inspecties</li>
-        <li><strong>DJI Avata</strong> — FPV footage</li>
-      </ul>
-      <h2 style="margin-top:2rem">Licenties</h2>
-      <ul>
-        <li>A1-A3 en A2 (Open categorie)</li>
-        <li>SPECIFIC categorie — vereist in groot deel van Brabant (nabij Volkel en Eindhoven)</li>
-        <li>Partner van Drone Solutions voor complexe opdrachten</li>
-      </ul>
-    </div>
-
-    <a href="/contact" class="btn">Vraag een offerte aan</a>
-  </div>
 </Layout>
 
 <style>
-  .intro { max-width: 700px; }
-  .intro p { color: var(--muted); font-size: 1.05rem; }
-  .specs { margin-top: 3rem; }
-  .specs h2 { font-size: 1.3rem; color: var(--white); margin-bottom: 1rem; }
-  .specs ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
-  .specs li { color: var(--muted); font-size: 0.95rem; }
-  .specs strong { color: var(--text); }
+  .sub-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 2rem;
+    margin-top: 0;
+  }
+
+  .sub-nav a {
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    transition: color 0.2s;
+    border-bottom: 1px solid transparent;
+    padding-bottom: 2px;
+  }
+
+  .sub-nav a:hover { color: var(--white); border-color: var(--white); }
+
+  .drone-sections {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 3rem 2rem;
+    margin-top: 0.5rem;
+  }
+
+  .drone-section h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 0.75rem;
+  }
+
+  .text-link {
+    color: var(--white);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  @media (max-width: 768px) {
+    .sub-nav { gap: 0.5rem 1.25rem; }
+  }
 </style>

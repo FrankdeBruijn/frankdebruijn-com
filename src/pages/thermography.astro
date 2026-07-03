@@ -2,41 +2,75 @@
 import Layout from '../layouts/Layout.astro';
 ---
 <Layout title="Thermography">
-  <div class="hero">
-    <h1>Thermo<span>graphy</span></h1>
-    <p>Warmteverlies inzichtelijk via Warmtescan.nu</p>
-  </div>
 
-  <div class="section">
-    <div class="intro">
-      <p>Via <a href="https://warmtescan.nu" target="_blank">Warmtescan.nu</a> bied ik professionele thermografische scans voor woningen, bedrijfspanden en zonnepanelen. Met een warmtebeeldcamera maak ik onzichtbare problemen zichtbaar — van slechte isolatie tot lekkages en brandgevaar.</p>
+  <section class="page-hero">
+    <div class="page-hero-bg" style="background-image: url('/img/home-section2.jpg')"></div>
+    <div class="page-hero-content">
+      <p class="section-title">Thermography</p>
+      <h1>Warmtescan.nu</h1>
+      <p>Maak je warmteverlies inzichtelijk</p>
     </div>
+  </section>
 
-    <div class="card-grid" style="margin-top: 3rem;">
-      <div class="card">
+  <section class="section">
+    <p class="body-text">
+      Heeft u het gevoel dat de isolatie zijn werk niet meer goed doet, ervaart u tocht en wilt u niet zomaar verschillende isolatiemaatregelen nemen, dan helpt een Quickscan wellicht!
+    </p>
+    <p class="body-text">
+      Door met een thermografische camera foto's te maken van de woning, dit kan zowel binnen als buiten, krijgt u inzichtelijk waar er problemen zijn. Met dit rapport kunt u zelf aan de slag gaan of laat u een aannemer of isolatiebedrijf gericht het probleem verhelpen zodat uw wooncomfort optimaal wordt.
+    </p>
+    <p class="body-text">
+      Buiten de quickscan kan er ook met een drone gewerkt worden. Hiervoor wordt de Mavic Enterprise Advanced drone van DJI gebruikt. Naast isolatie problemen en lekkages kunnen hier ook zonnepaneel inspecties mee verzorgd worden. Als gelicenseerd piloot mag er op veel plekken gevlogen worden.
+    </p>
+    <p class="body-text">
+      Meer informatie? <a href="/contact" class="text-link">Bel gerust of laat uw naam achter</a>, dan nemen we zo snel mogelijk contact met u op!
+    </p>
+
+    <hr class="divider" style="margin: 3rem 0;" />
+
+    <div class="thermo-grid">
+      <div class="thermo-item">
         <h3>Quickscan Woning</h3>
-        <p>Thermofoto's van de binnen- en buitenkant van je woning. Directe rapportage van isolatieproblemen en warmteverlies.</p>
+        <p class="body-text">Thermofoto's van binnen en buiten. Directe rapportage van isolatieproblemen en warmteverlies.</p>
       </div>
-      <div class="card">
+      <div class="thermo-item">
         <h3>Drone Thermografie</h3>
-        <p>Thermografische scan vanuit de lucht met DJI Mavic 2 Enterprise Advanced. Ideaal voor daken en grote oppervlakken.</p>
+        <p class="body-text">Thermografische scan vanuit de lucht met DJI Mavic 2 Enterprise Advanced. Ideaal voor grote daken.</p>
       </div>
-      <div class="card">
-        <h3>Zonnepanelen Inspectie</h3>
-        <p>Identificeer inefficiënte of defecte zonnepanelen snel en veilig. Verhoog het rendement van je installatie.</p>
+      <div class="thermo-item">
+        <h3>Zonnepanelen</h3>
+        <p class="body-text">Identificeer defecte zonnepanelen snel en veilig. Verhoog het rendement van uw installatie.</p>
       </div>
-      <div class="card">
+      <div class="thermo-item">
         <h3>Lekdetectie</h3>
-        <p>Vind waterlekkages, brandhaarden en andere verborgen problemen voordat ze schade veroorzaken.</p>
+        <p class="body-text">Vind waterlekkages en andere verborgen problemen voordat ze schade veroorzaken.</p>
       </div>
     </div>
 
-    <a href="https://warmtescan.nu" target="_blank" class="btn" style="margin-top:3rem">Naar Warmtescan.nu</a>
-  </div>
+    <div style="margin-top: 3rem;">
+      <a href="https://warmtescan.nu" target="_blank" class="btn-outline">Naar Warmtescan.nu</a>
+    </div>
+  </section>
+
 </Layout>
 
 <style>
-  .intro { max-width: 700px; }
-  .intro p { color: var(--muted); font-size: 1.05rem; }
-  .intro a { color: var(--accent); }
+  .thermo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2.5rem 2rem;
+  }
+
+  .thermo-item h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 0.75rem;
+  }
+
+  .text-link {
+    color: var(--white);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
 </style>

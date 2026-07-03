@@ -2,72 +2,113 @@
 import Layout from '../layouts/Layout.astro';
 ---
 <Layout title="Contact">
-  <div class="hero">
-    <h1><span>Contact</span></h1>
-    <p>Bel, mail of stuur een bericht</p>
-  </div>
 
-  <div class="section contact-grid">
-    <div class="contact-info">
-      <h2>Gegevens</h2>
-      <ul>
-        <li><span>Telefoon</span><a href="tel:+31612415418">+31 (0)6 12 41 54 18</a></li>
-        <li><span>E-mail</span><a href="mailto:info@frankdebruijn.com">info@frankdebruijn.com</a></li>
-        <li><span>Adres</span>Krakenburg 23<br />5341 BM Oss</li>
-        <li><span>KvK</span>Op aanvraag</li>
-      </ul>
+  <section class="page-hero" style="min-height: 50vh;">
+    <div class="page-hero-bg" style="background-image: url('/img/hero-home.jpg'); opacity: 0.2;"></div>
+    <div class="page-hero-content">
+      <p class="section-title">Contact</p>
+      <h1>Contact Me</h1>
+      <p>Interesse in mijn diensten? Slowmotion · warmtescan · drone operations</p>
+    </div>
+  </section>
+
+  <section class="section contact-layout">
+    <div class="contact-form-wrap">
+      <h2>Stuur een bericht</h2>
+      <p class="body-text" style="margin-bottom: 2rem;">Vul onderstaand formulier in en ik neem zo snel mogelijk contact met je op!</p>
+
+      <form class="contact-form" name="contact" method="POST" data-netlify="true" action="/contact?success=true">
+        <div class="form-row">
+          <label>
+            <span>Voornaam</span>
+            <input type="text" name="voornaam" placeholder="Voornaam" required />
+          </label>
+          <label>
+            <span>Achternaam</span>
+            <input type="text" name="achternaam" placeholder="Achternaam" required />
+          </label>
+        </div>
+        <label>
+          <span>Email</span>
+          <input type="email" name="email" placeholder="Email" required />
+        </label>
+        <label>
+          <span>Telefoon</span>
+          <input type="tel" name="telefoon" placeholder="Telefoon" />
+        </label>
+        <label>
+          <span>Bericht</span>
+          <textarea name="bericht" rows="5" placeholder="Bericht..."></textarea>
+        </label>
+
+        <fieldset class="services-check">
+          <legend>Sevics</legend>
+          <label class="check-label">
+            <input type="checkbox" name="services" value="slowmotion" />
+            <span>Art of Slowmotion - High Speed</span>
+          </label>
+          <label class="check-label">
+            <input type="checkbox" name="services" value="drone" />
+            <span>Drone Operations</span>
+          </label>
+          <label class="check-label">
+            <input type="checkbox" name="services" value="warmtescan" />
+            <span>Warmtescan.nu</span>
+          </label>
+          <label class="check-label">
+            <input type="checkbox" name="services" value="qtake" />
+            <span>Qtake & Data</span>
+          </label>
+          <label class="check-label">
+            <input type="checkbox" name="services" value="grading" />
+            <span>Edit & Grading</span>
+          </label>
+          <label class="check-label">
+            <input type="checkbox" name="services" value="digital" />
+            <span>Digital Services</span>
+          </label>
+        </fieldset>
+
+        <button type="submit" class="btn-outline">Verzenden</button>
+      </form>
     </div>
 
-    <form class="contact-form" action="mailto:info@frankdebruijn.com" method="get">
-      <h2>Stuur een bericht</h2>
-      <label>
-        Naam
-        <input type="text" name="name" placeholder="Jouw naam" required />
-      </label>
-      <label>
-        E-mail
-        <input type="email" name="email" placeholder="jouw@email.nl" required />
-      </label>
-      <label>
-        Bericht
-        <textarea name="body" rows="5" placeholder="Vertel over jouw project..." required></textarea>
-      </label>
-      <button type="submit" class="btn">Verstuur</button>
-    </form>
-  </div>
+    <aside class="contact-info">
+      <div class="info-block">
+        <h4>Info</h4>
+        <a href="tel:+31612415418">+31(0) 6 12 41 54 18</a>
+        <a href="mailto:Info@frankdebruijn.com">Info@frankdebruijn.com</a>
+      </div>
+      <div class="info-block">
+        <h4>Address</h4>
+        <p>Krakenburg 23</p>
+        <p>5341BM Oss, The Netherlands</p>
+      </div>
+      <div class="info-block">
+        <h4>Follow</h4>
+        <a href="https://www.linkedin.com/in/frankdebruijn" target="_blank">LinkedIn</a>
+        <a href="https://www.facebook.com/artofslowmotion" target="_blank">Facebook</a>
+        <a href="https://www.instagram.com/frankdebruijnfilmmaker" target="_blank">Instagram</a>
+      </div>
+    </aside>
+  </section>
+
 </Layout>
 
 <style>
-  .contact-grid {
+  .contact-layout {
     display: grid;
-    grid-template-columns: 1fr 1.5fr;
-    gap: 4rem;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 5rem;
     align-items: start;
   }
 
-  .contact-info h2, .contact-form h2 {
-    font-size: 1.3rem;
+  .contact-form-wrap h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
     color: var(--white);
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.5rem;
   }
-
-  .contact-info ul { list-style: none; display: flex; flex-direction: column; gap: 1.5rem; }
-
-  .contact-info li {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-  }
-
-  .contact-info span {
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--muted);
-  }
-
-  .contact-info a { color: var(--accent); }
-  .contact-info a:hover { text-decoration: underline; }
 
   .contact-form {
     display: flex;
@@ -75,35 +116,121 @@ import Layout from '../layouts/Layout.astro';
     gap: 1.25rem;
   }
 
-  .contact-form label {
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .contact-form label,
+  .check-label {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
-    font-size: 0.85rem;
+    gap: 0.4rem;
+  }
+
+  .contact-form label > span {
+    font-size: 0.75rem;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.1em;
     color: var(--muted);
   }
 
   .contact-form input,
   .contact-form textarea {
-    background: var(--mid);
-    border: 1px solid #2a2a2a;
-    border-radius: 4px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 2px;
     padding: 0.75rem 1rem;
-    color: var(--text);
-    font-size: 1rem;
+    color: var(--white);
+    font-size: 0.95rem;
     font-family: inherit;
     transition: border-color 0.2s;
+    width: 100%;
   }
 
   .contact-form input:focus,
   .contact-form textarea:focus {
     outline: none;
-    border-color: var(--accent);
+    border-color: rgba(255,255,255,0.4);
   }
 
+  .contact-form input::placeholder,
+  .contact-form textarea::placeholder { color: var(--muted); }
+
+  /* Services checkboxes */
+  .services-check {
+    border: none;
+    padding: 0;
+  }
+
+  .services-check legend {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-bottom: 0.75rem;
+  }
+
+  .services-check {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem 1rem;
+  }
+
+  .services-check legend {
+    grid-column: 1 / -1;
+  }
+
+  .check-label {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--muted);
+    cursor: pointer;
+  }
+
+  .check-label input { width: auto; }
+
+  /* Info aside */
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding-top: 0.5rem;
+  }
+
+  .info-block {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .info-block h4 {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--white);
+    letter-spacing: 0.05em;
+    margin-bottom: 0.25rem;
+  }
+
+  .info-block a,
+  .info-block p {
+    font-size: 0.85rem;
+    color: var(--muted);
+    transition: color 0.2s;
+  }
+
+  .info-block a:hover { color: var(--white); }
+
   @media (max-width: 768px) {
-    .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .contact-layout {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    .form-row { grid-template-columns: 1fr; }
+    .services-check { grid-template-columns: 1fr; }
   }
 </style>
