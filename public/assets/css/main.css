@@ -1,0 +1,635 @@
+/*
+ * Veldwerk — ontwerplaag voor het child-theme.
+ *
+ * De tokens komen uit theme.json en zijn hier als custom properties beschikbaar
+ * via de --wp--preset--* variabelen. Alleen dit bestand bepaalt de vormgeving;
+ * de blokopmaak in /patterns blijft schoon.
+ */
+
+:root {
+	--bg: var(--wp--preset--color--bg, #0B100D);
+	--surface: var(--wp--preset--color--surface, #121913);
+	--ink: var(--wp--preset--color--ink, #E9EEE5);
+	--muted: var(--wp--preset--color--muted, #94A192);
+	--accent: var(--wp--preset--color--accent, #D9822B);
+	--line: var(--wp--preset--color--line, #232C25);
+
+	--grotesk: var(--wp--preset--font-family--grotesk);
+	--klassiek: var(--wp--preset--font-family--klassiek);
+	--mono: var(--wp--preset--font-family--mono);
+
+	--tegel-hoogte: clamp(200px, 23vw, 320px);
+	--gutter: clamp(20px, 4vw, 56px);
+	--section: clamp(72px, 10vw, 112px);
+	--maxw: 1240px;
+}
+
+/* ---------------------------------------------------------------- basis -- */
+
+/* WordPress zet dit alleen op zijn eigen blokken. De losse opmaak in de patronen
+   valt daarbuiten, en dan telt padding bij de breedte op: een `.fdb-wrap` van
+   100% werd 40px te breed en gaf horizontaal scrollen op mobiel. */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html { scroll-behavior: auto; }
+	*, *::before, *::after {
+		animation-duration: 0.01ms !important;
+		transition-duration: 0.01ms !important;
+	}
+}
+
+body {
+	background: var(--bg);
+	color: var(--ink);
+	font-family: var(--grotesk);
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+	overflow-x: hidden;
+}
+
+img {
+	display: block;
+	max-width: 100%;
+	height: auto;
+}
+
+::selection {
+	background: var(--accent);
+	color: #0B100D;
+}
+
+:focus-visible {
+	outline: 2px solid var(--accent);
+	outline-offset: 3px;
+}
+
+/* Blok-normalisatie. De secties zijn opgebouwd uit core-blokken, zodat teksten in
+   de Site-editor bewerkbaar blijven. Die blokken brengen hun eigen wrappers mee;
+   hier worden die neutraal gezet zodat de opmaak hieronder de vorm bepaalt. */
+/* :where() houdt deze reset op nul-specificiteit. Zonder dat wint hij van de
+   opmaakregels verderop, die immers ook maar één klasse diep zijn, en verdwijnen
+   marges die het ontwerp juist nodig heeft. */
+:where(.fdb-hero, .fdb-work, .fdb-about, .fdb-contact) :where(.wp-block-group) {
+	margin-block: 0;
+}
+
+:where(.fdb-hero, .fdb-work, .fdb-about) :where(figure.wp-block-image) {
+	margin: 0;
+	height: 100%;
+}
+
+.fdb-hero__media,
+.fdb-tile__frame,
+.fdb-about__portrait {
+	line-height: 0;
+}
+
+.fdb-wrap {
+	width: 100%;
+	max-width: var(--maxw);
+	margin-inline: auto;
+	padding-inline: var(--gutter);
+}
+
+.fdb-section {
+	padding-block: var(--section);
+}
+
+/* Haarlijn als scheiding. Geen kaarten, geen slagschaduw. */
+.fdb-rule {
+	border: 0;
+	border-top: 1px solid var(--line);
+	margin: 0;
+}
+
+/* Mono is voorbehouden aan echte metadata: discipline, plaats, contactgegevens. */
+.fdb-meta {
+	font-family: var(--mono);
+	font-size: 0.8125rem;
+	font-weight: 400;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--muted);
+}
+
+/* ------------------------------------------------------------ typografie -- */
+
+.fdb-display {
+	font-family: var(--grotesk);
+	font-weight: 500;
+	font-size: clamp(2.5rem, 6.1vw, 5.25rem);
+	line-height: 1.04;
+	letter-spacing: -0.032em;
+	margin: 0;
+	text-wrap: balance;
+}
+
+/* Nadruk gebeurt met de cursief van EB Garamond, een oude-stijl Garamond tegen
+   de moderne grotesk eromheen. Dat is bewust één systeem: élke nadruk krijgt
+   deze vorm, nooit een los woord in een willekeurig ander lettertype.
+
+   Garamond heeft een kleinere x-hoogte dan de grotesk, dus op dezelfde graad
+   oogt hij te klein. Vandaar de correctie op font-size, en een zwaarder gewicht
+   omdat de dunne schreven op een donkere grond anders wegvallen. */
+.fdb-display em,
+.fdb-title em,
+.fdb-figure {
+	font-family: var(--klassiek);
+	font-style: italic;
+	font-weight: 500;
+	font-size: 1.1em;
+	letter-spacing: -0.005em;
+	color: var(--accent);
+	line-height: 1.12;
+	padding-bottom: 0.04em;
+}
+
+.fdb-title {
+	font-family: var(--grotesk);
+	font-weight: 500;
+	font-size: clamp(1.875rem, 4.2vw, 3.25rem);
+	line-height: 1.06;
+	letter-spacing: -0.026em;
+	margin: 0;
+	text-wrap: balance;
+}
+
+.fdb-lead {
+	font-size: clamp(1.0625rem, 1.4vw, 1.3125rem);
+	line-height: 1.55;
+	color: #C6D0C4;
+	max-width: 44ch;
+	margin: 0;
+}
+
+.fdb-body {
+	font-size: 1.0625rem;
+	line-height: 1.68;
+	color: var(--muted);
+	max-width: 62ch;
+}
+
+.fdb-body strong {
+	color: var(--ink);
+	font-weight: 500;
+}
+
+/* --------------------------------------------------------------- knoppen -- */
+
+.fdb-actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 12px;
+}
+
+.fdb-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 13px 26px;
+	border-radius: 2px;
+	font-size: 0.9375rem;
+	font-weight: 500;
+	letter-spacing: -0.005em;
+	text-decoration: none;
+	white-space: nowrap;
+	transition: background-color 0.18s ease, color 0.18s ease,
+		border-color 0.18s ease, transform 0.12s ease;
+}
+
+.fdb-btn:active {
+	transform: translateY(1px);
+}
+
+.fdb-btn--primary {
+	background: var(--accent);
+	color: #140B03;
+	border: 1px solid var(--accent);
+}
+
+.fdb-btn--primary:hover {
+	background: #E8973F;
+	border-color: #E8973F;
+	color: #140B03;
+}
+
+.fdb-btn--ghost {
+	border: 1px solid var(--line);
+	color: var(--ink);
+	background: transparent;
+}
+
+.fdb-btn--ghost:hover {
+	border-color: var(--accent);
+	color: var(--accent);
+}
+
+/* ------------------------------------------------------------- navigatie -- */
+
+/* Het panorama is fel bij de horizon, dus de navigatie krijgt een echte
+   afdekking in plaats van een vleugje verloop. Zonder die laag valt de
+   merknaam weg tegen het lichte zand. */
+.fdb-nav {
+	position: absolute;
+	inset: 0 0 auto 0;
+	z-index: 5;
+	padding-block: 22px;
+	background: linear-gradient(
+		180deg,
+		rgba(6, 10, 7, 0.82) 0%,
+		rgba(6, 10, 7, 0.42) 55%,
+		rgba(6, 10, 7, 0) 100%
+	);
+	padding-bottom: 46px;
+}
+
+.fdb-nav__inner {
+	display: flex;
+	align-items: baseline;
+	justify-content: space-between;
+	gap: 24px;
+	max-width: var(--maxw);
+	margin-inline: auto;
+	padding-inline: var(--gutter);
+}
+
+.fdb-nav__brand {
+	font-weight: 500;
+	font-size: 1rem;
+	letter-spacing: -0.02em;
+	color: var(--ink);
+	text-decoration: none;
+}
+
+.fdb-nav__links {
+	display: flex;
+	gap: 28px;
+}
+
+.fdb-nav__links a {
+	font-size: 0.9375rem;
+	color: var(--ink);
+	opacity: 0.82;
+	text-decoration: none;
+	transition: opacity 0.18s ease, color 0.18s ease;
+}
+
+.fdb-nav__links a:hover {
+	opacity: 1;
+	color: var(--accent);
+}
+
+@media (max-width: 700px) {
+	.fdb-nav__links { display: none; }
+}
+
+/* ------------------------------------------------------------------ hero -- */
+
+.fdb-hero {
+	position: relative;
+	min-height: 100svh;
+	display: flex;
+	flex-direction: column;
+}
+
+/* Het panorama loopt tot de viewportrand en behoudt zijn eigen verhouding
+   in plaats van tot een vierkant te worden bijgesneden. */
+.fdb-hero__media {
+	position: relative;
+	flex: 0 0 auto;
+	height: clamp(240px, 38vh, 420px);
+	overflow: hidden;
+}
+
+.fdb-hero__media img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: 50% 38%;
+}
+
+/* Het beeld zakt in de grond in plaats van erop te liggen. */
+.fdb-hero__media::after {
+	content: "";
+	position: absolute;
+	inset: auto 0 -1px 0;
+	height: 42%;
+	background: linear-gradient(180deg, rgba(11, 16, 13, 0) 0%, var(--bg) 96%);
+	pointer-events: none;
+}
+
+.fdb-hero__body {
+	flex: 1 1 auto;
+	display: flex;
+	align-items: center;
+	padding-block: clamp(28px, 4vh, 52px);
+}
+
+.fdb-hero__meta {
+	margin-bottom: 22px;
+}
+
+.fdb-hero__title {
+	max-width: 16ch;
+	margin-bottom: 26px;
+}
+
+.fdb-hero__lead {
+	margin-bottom: 34px;
+}
+
+/* ------------------------------------------------------------------ werk -- */
+
+.fdb-work__head {
+	max-width: 46ch;
+	margin-bottom: clamp(40px, 5vw, 64px);
+}
+
+.fdb-work__head .fdb-title {
+	margin-bottom: 18px;
+}
+
+/* Uitgevuld raster, zoals een klassieke fotogalerij. Elk beeld krijgt dezelfde
+   hoogte, en de breedte volgt de verhouding van de foto zelf: liggend wordt
+   breed, staand wordt smal. Daardoor hoeft er niets weggesneden te worden en
+   blijven de rijen tóch netjes uitgevuld.
+
+   `--ratio` wordt per tegel door het patroon gezet, uitgelezen uit het bestand.
+   Groeifactor én basisbreedte staan allebei op die verhouding, waardoor de
+   onderlinge breedtes binnen een rij exact de beeldverhoudingen volgen. */
+.fdb-work__grid {
+	display: flex;
+	flex-wrap: wrap;
+	gap: clamp(16px, 2vw, 28px);
+}
+
+/* De breedte volgt de beeldverhouding, zodat er nauwelijks iets wegvalt, maar de
+   rijen lopen wél tot de rand door.
+
+   De truc zit in de basisbreedte: die staat op 90% van de natuurlijke breedte.
+   Flexbox bepaalt de rijindeling op die basis, dus er past een beeld meer op een
+   rij dan anders. Daarna groeien de tegels terug, evenredig met hun verhouding.
+   Het plafond van 112% houdt het verschil met de echte verhouding klein, zodat
+   er hooguit een randje afgaat in plaats van een halve foto. */
+.fdb-tile {
+	--ratio: 1.5;
+	--natuurlijk: calc(var(--ratio) * var(--tegel-hoogte));
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+	flex: var(--ratio) 0 calc(var(--natuurlijk) * 0.9);
+	max-width: calc(var(--natuurlijk) * 1.12);
+}
+
+/* Eén vaste hoogte voor elk beeld, zodat de bijschriften op één lijn staan. */
+.fdb-tile__frame {
+	overflow: hidden;
+	background: var(--surface);
+	height: var(--tegel-hoogte);
+}
+
+.fdb-tile__frame img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+/* Ontkleurd in rust, kleur bij aanwijzen. Alleen op apparaten die echt hover
+   kennen: op een telefoon bestaat hover niet, en daar zou het beeld dus altijd
+   grijs blijven. Die krijgen de foto's gewoon in kleur.
+
+   De lichte correctie op contrast en helderheid is nodig omdat grijswaarden van
+   donkere foto's anders dichtslibben. */
+@media (hover: hover) {
+	.fdb-tile__frame img {
+		filter: grayscale(1) contrast(1.06) brightness(1.04);
+		transition: filter 0.45s ease, transform 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+	}
+
+	.fdb-tile:hover .fdb-tile__frame img {
+		filter: grayscale(0) contrast(1) brightness(1);
+		transform: scale(1.03);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.fdb-tile:hover .fdb-tile__frame img { transform: none; }
+}
+
+/* `cover` blijft staan als vangnet voor het afrondingsverschil van een halve
+   pixel. Omdat de tegelbreedte de beeldverhouding volgt, snijdt hij in de
+   praktijk niets weg. */
+
+/* Bijschrift onder het beeld, nooit eroverheen. */
+.fdb-tile__cap b {
+	display: block;
+	font-weight: 500;
+	font-size: 1.0625rem;
+	letter-spacing: -0.015em;
+	color: var(--ink);
+	margin-bottom: 3px;
+}
+
+.fdb-tile__cap span {
+	display: block;
+	font-size: 0.9375rem;
+	line-height: 1.45;
+	color: var(--muted);
+}
+
+/* ------------------------------------------------------------------ over -- */
+
+.fdb-about {
+	background: var(--surface);
+	border-top: 1px solid var(--line);
+	border-bottom: 1px solid var(--line);
+	padding-block: var(--section);
+}
+
+.fdb-about__grid {
+	display: grid;
+	grid-template-columns: repeat(12, 1fr);
+	gap: clamp(32px, 5vw, 72px);
+	align-items: start;
+}
+
+/* Het portret steekt boven de sectiegrens uit en overlapt de haarlijn, zodat
+   het niet als pasfoto in een vakje leest. */
+/* Het portret steekt boven de sectiegrens uit. De uitstap blijft binnen de
+   onderruimte van de werk-sectie, zodat hij nooit over een bijschrift valt.
+   De `:root`-prefix is nodig: WordPress zet zelf `:root :where(.is-layout-flow) > *
+   { margin-block: 0 }` neer, even specifiek als één klasse en later in de
+   bronvolgorde. Zonder die prefix wint die reset en verdwijnt de overlap. */
+:root .fdb-about__portrait {
+	grid-column: 1 / span 4;
+	margin-top: -72px;
+	position: relative;
+	z-index: 2;
+}
+
+.fdb-about__portrait img {
+	width: 100%;
+	aspect-ratio: 5 / 7;
+	object-fit: cover;
+	object-position: 50% 22%;
+}
+
+.fdb-about__text {
+	grid-column: 6 / span 7;
+}
+
+.fdb-about__text .fdb-title {
+	margin-bottom: 28px;
+}
+
+.fdb-about__text .fdb-body + .fdb-body {
+	margin-top: 18px;
+}
+
+/* Het getal groot in de lopende zin, als enige plek waar data schaal krijgt.
+   Zelfde klassieke cursief als de nadruk in de koppen, maar in inkt en niet in
+   amber: dit is een cijfer, geen accent. */
+.fdb-figure {
+	font-size: clamp(1.75rem, 3vw, 2.5rem);
+	line-height: 1;
+	letter-spacing: -0.01em;
+	color: var(--ink);
+	padding-inline: 0.06em;
+}
+
+.fdb-tags {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px 10px;
+	margin-top: 30px;
+	padding-top: 26px;
+	border-top: 1px solid var(--line);
+}
+
+.fdb-tags li {
+	font-family: var(--mono);
+	font-size: 0.8125rem;
+	letter-spacing: 0.02em;
+	color: var(--muted);
+	list-style: none;
+}
+
+.fdb-tags li:not(:last-child)::after {
+	content: "/";
+	color: var(--line);
+	padding-left: 10px;
+}
+
+/* --------------------------------------------------------------- contact -- */
+
+.fdb-contact__grid {
+	display: grid;
+	grid-template-columns: repeat(12, 1fr);
+	gap: clamp(28px, 4vw, 64px);
+	align-items: end;
+}
+
+.fdb-contact__lead {
+	grid-column: 1 / span 7;
+}
+
+.fdb-contact__lead .fdb-title {
+	margin-bottom: 20px;
+}
+
+.fdb-contact__details {
+	grid-column: 9 / span 4;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.fdb-contact__details a {
+	font-family: var(--mono);
+	font-size: 0.9375rem;
+	color: var(--ink);
+	text-decoration: none;
+	transition: color 0.18s ease;
+}
+
+.fdb-contact__details a:hover {
+	color: var(--accent);
+}
+
+.fdb-contact__actions {
+	margin-top: 34px;
+}
+
+/* ---------------------------------------------------------------- footer -- */
+
+.fdb-footer {
+	border-top: 1px solid var(--line);
+	padding-block: 26px;
+}
+
+.fdb-footer__inner {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	gap: 12px 24px;
+	font-family: var(--mono);
+	font-size: 0.8125rem;
+	color: var(--muted);
+}
+
+.fdb-footer__inner a {
+	color: var(--muted);
+	text-decoration: none;
+	transition: color 0.18s ease;
+}
+
+.fdb-footer__inner a:hover {
+	color: var(--accent);
+}
+
+.fdb-footer__links {
+	display: flex;
+	gap: 20px;
+}
+
+/* ----------------------------------------------------------- responsief -- */
+
+@media (max-width: 960px) {
+	:root { --tegel-hoogte: clamp(200px, 30vw, 280px); }
+
+	:root .fdb-about__portrait {
+		grid-column: 1 / span 5;
+		margin-top: -48px;
+	}
+
+	.fdb-about__text { grid-column: 1 / span 12; }
+
+	.fdb-contact__lead { grid-column: 1 / span 12; }
+	.fdb-contact__details { grid-column: 1 / span 12; }
+}
+
+@media (max-width: 640px) {
+	/* Eén beeld per rij: de tegel mag niet meer meebewegen met zijn verhouding. */
+	:root { --tegel-hoogte: 240px; }
+
+	.fdb-tile { flex: 1 1 100%; }
+
+	/* Portret blijft op halve breedte staan in plaats van paginabreed te worden. */
+	:root .fdb-about__portrait {
+		grid-column: 1 / span 7;
+		margin-top: -36px;
+	}
+
+	.fdb-hero__title { max-width: 100%; }
+
+	.fdb-footer__inner { flex-direction: column; }
+}

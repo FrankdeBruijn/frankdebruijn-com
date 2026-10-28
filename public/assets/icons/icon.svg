@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Frank de Bruijn">
+  <rect width="512" height="512" rx="88" fill="#0B100D"/>
+  <path fill="#E9EEE5" d="M152 96h222v54H208v266H152z"/>
+  <rect x="152" y="236" width="180" height="50" fill="#D9822B"/>
+</svg>
